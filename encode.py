@@ -1,11 +1,12 @@
 import json
 
-with open('C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/creds.json','r') as reader:
-    # for line in reader:
-    #     if line.find('username') >= 0:
-    #         print(line)
-    #         print(len(line))
+src = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/creds.json'
+dst = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/credsw.json'
+
+with open(src, 'r') as reader:
     datas = json.load(reader)
+
+
 count = 1
 creds = []
 for data in datas['items']:
@@ -24,7 +25,7 @@ for data in datas['items']:
             logins['url'] = url
             creds.append(logins)
 
-with open('C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/credsw.json','w') as json_file:
+with open(dst, 'w') as json_file:
     json.dump(creds, json_file, indent=4)
 
 
