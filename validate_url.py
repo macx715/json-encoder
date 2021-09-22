@@ -1,9 +1,9 @@
 import requests
 import json
 
-src = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/credsw.json'
-valid_dst = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/credsvalid.json'
-invalid_dst = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/credserror.json'
+src = 'C:<path>/json-encoder/data/credsw.json'
+valid_dst = 'C:<path>/json-encoder/data/credsvalid.json'
+invalid_dst = 'C:<path>/json-encoder/data/credserror.json'
 
 
 with open(src, 'r') as reader:

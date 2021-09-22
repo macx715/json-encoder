@@ -1,7 +1,7 @@
 import json
 
-src = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/creds.json'
-dst = 'C:/Users/markc_gphih48/Documents/development/python/json-encoder/data/credsw.json'
+src = 'C:<path>/json-encoder/data/creds.json'
+dst = 'C:<path>/json-encoder/data/credsw.json'
 
 
 with open(src, 'r') as reader:
