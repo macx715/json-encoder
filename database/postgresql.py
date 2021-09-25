@@ -1,7 +1,11 @@
 import psycopg2
 from configparser import ConfigParser
+import json
 
-#https://www.postgresqltutorial.com/postgresql-python/connect/
+# https://www.postgresqltutorial.com/postgresql-python/connect/
+
+dst = 'C:/<path>/credsw.json'
+
 
 def config(filename='database.ini', section='postgresql'):
     parser = ConfigParser()
@@ -20,6 +24,7 @@ def config(filename='database.ini', section='postgresql'):
 def connect():
     """Connection to the postgresql database server"""
 
+    global result_set
     conn = None
 
     try:
@@ -35,11 +40,22 @@ def connect():
 
         # execute statement
         print('PostgresSQL database version:')
-        cur.execute('select version()')
+        # cur.execute('select version()')
+        cur.execute('select * from security.logins')
 
         # display the postrgresql database server version
-        db_version = cur.fetchone()
-        print(db_version)
+        rows = cur.fetchall()
+
+        result_set = []
+        for row in rows:
+            record = {}
+            #print(type(row))
+            if row:
+                record['id'] = row[0]
+                record['username'] = row[1]
+                record['password'] = row[2]
+                record['url'] = row[3]
+                result_set.append(record)
 
         # close the communication with the postgresql
         cur.close()
@@ -50,6 +66,9 @@ def connect():
         if conn is not None:
             conn.close()
             print('database connection close')
+
+    with open(dst, 'w') as json_file: #print output to json file
+        json.dump(result_set, json_file, indent=4)
 
 
 if __name__ == '__main__':
