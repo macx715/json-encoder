@@ -4,8 +4,9 @@ import json
 
 # https://www.postgresqltutorial.com/postgresql-python/connect/
 
-dst = 'C:/<path>/credsw.json'
+sql = ''
 
+dst = 'C:/<path>/credsw.json'
 
 def config(filename='database.ini', section='postgresql'):
     parser = ConfigParser()
@@ -41,7 +42,7 @@ def connect():
         # execute statement
         print('PostgresSQL database version:')
         # cur.execute('select version()')
-        cur.execute('select * from security.logins')
+        cur.execute(sql)
 
         # display the postrgresql database server version
         rows = cur.fetchall()
