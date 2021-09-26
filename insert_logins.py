@@ -1,7 +1,7 @@
 import json, sys
 from psycopg2 import connect, Error
 
-valid_dst = fr'C:<path and name>.json'
+valid_dst = fr'C:<>.json'
 
 with open(valid_dst) as json_data:
     record_list = json.load(json_data)
@@ -37,7 +37,7 @@ print(sql_string)
 # connection and insert data
 try:
     conn = connect(
-        dbname='cam_sec',
+        dbname='<>>',
         user='postgres',
         host='localhost',
         password='password',
@@ -52,7 +52,7 @@ except (Exception, Error) as err:
 
 if cur != None:
     try:
-        cur.execute(sql_string)
+        #cur.execute(sql_string)
         conn.commit()
         print('\nfinished INSERT INTO execution')
     except (Exception, Error) as error:

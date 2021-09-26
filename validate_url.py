@@ -1,9 +1,9 @@
 import requests
 import json
 
-src = 'C:<path>/json-encoder/data/credsw.json'
-valid_dst = 'C:<path>/json-encoder/data/credsvalid.json'
-invalid_dst = 'C:<path>/json-encoder/data/credserror.json'
+src = fr'C:<>.json'
+valid_dst = fr'C:<>.json'
+invalid_dst = fr'C:<>.json'
 
 
 with open(src, 'r') as reader:
@@ -16,13 +16,14 @@ for data in datas:
     url = data['url']
     try:
         response = requests.get(url, timeout=5)#might try a time out situation
+        if response.ok: #todo this needs to be redesigned
+            validated.append(data)
+        else:
+            timedout.append(data)
     except Exception:
         timedout.append(data)
 
-    if response:
-        validated.append(data)
-    else:
-        timedout.append(data)
+
 
 
 with open(valid_dst, 'w') as json_file:
